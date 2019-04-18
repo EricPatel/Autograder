@@ -1,4 +1,4 @@
-# Run with command [FLASK_APP=hello.py FLASK_DEBUG=1 flask run]
+# Run with command [FLASK_APP=app.py FLASK_DEBUG=1 flask run]
 # Will reload on save
 
 from flask import Flask, render_template
