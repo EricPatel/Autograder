@@ -12,8 +12,23 @@ html{
   font-family: monospace;
   font-size: 17px;
   background-color: #999;
-  color: #fff;
   height: 100%;
+}
+
+html::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+nav{
+  position: absolute;
+  width: 100%;
+  top: 100px;
+}
+
+a{
+  font-size: 32px;
+  color: #000;
 }
 
 div{
@@ -24,11 +39,6 @@ div{
   height: 100%;
   width: 100%;
   background-color: #999;
-}
-
-html::-webkit-scrollbar { /* WebKit */
-  width: 0;
-  height: 0;
 }
 
 h1{
