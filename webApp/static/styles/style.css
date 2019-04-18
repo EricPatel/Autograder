@@ -1,0 +1,64 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  width: inherit;
+  height: 100%;
+}
+
+html{
+  height: auto;
+  width: auto;
+  margin: 0;
+  font-family: monospace;
+  font-size: 17px;
+  background-color: #999;
+  color: #fff;
+  height: 100%;
+}
+
+div{
+  height: 100%;
+}
+
+.full{
+  height: 100%;
+  width: 100%;
+  background-color: #999;
+}
+
+html::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+h1{
+  font-size: 38px;
+  padding-left: 10px;
+  display: inline;
+  color: #FFF;
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+
+}
