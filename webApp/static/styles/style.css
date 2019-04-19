@@ -1,7 +1,7 @@
 body{
   margin: 0px;
   padding: 0px;
-  width: inherit;
+  width: 100%;
   height: 100%;
 }
 
@@ -9,10 +9,11 @@ html{
   height: auto;
   width: auto;
   margin: 0;
-  font-family: monospace;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 17px;
-  background-color: #999;
+  background-color: #a30e22;
   height: 100%;
+  color: #44dfed;
 }
 
 html::-webkit-scrollbar { /* WebKit */
@@ -20,15 +21,42 @@ html::-webkit-scrollbar { /* WebKit */
   height: 0;
 }
 
-nav{
-  position: absolute;
-  width: 100%;
-  top: 100px;
+p{
+    font-size: 18px;
+    margin: 0;
 }
 
-a{
+h1{
+  margin: 10px;
+}
+
+nav{
+  background-color: #fff;
+  height: 40px;
+  color: #a30e22;
+  vertical-align: middle;
+}
+
+.brand{
+  font-size: 18px;
+  margin: 0;
+  padding-left: 10px;
+  position: absolute;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.navElement{
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.title{
+  vertical-align: middle;
   font-size: 32px;
-  color: #000;
+  margin: 0;
 }
 
 div{
@@ -37,15 +65,70 @@ div{
 
 .full{
   height: 100%;
+  height: -webkit-calc(100% - 40px);
+  height: -moz-calc(100% - 40px);
+  height: calc(100% - 40px);
   width: 100%;
-  background-color: #999;
+  background-color: #a30e22;
+  color: #fff;
+  text-align: center;
 }
 
 h1{
   font-size: 38px;
   padding-left: 10px;
   display: inline;
-  color: #FFF;
+}
+
+.content{
+  display: inline-table;
+  width: 50%;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  align-items: center;
+   justify-content: center;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+  padding-left: 40%;
+}
+
+.image{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+  padding-left: 20%;
+  background-image: url("../resources/laptop2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 350px;
+}
+
+@media screen and (max-width: 699px) {
+  .text{
+    width: 50%;
+    padding-left: 25%;
+  }
+
+  .image{
+    width: 100%;
+    margin-left: 0%;
+    padding-left: 0px;
+    background-image: url("../resources/laptop2.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 350px;
+  }
+  .content{
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 @media only screen
