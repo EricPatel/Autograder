@@ -2,21 +2,27 @@
 
 
 {% block body %}
-  <nav>
-    <p class="brand">>_ AutoGrader</p>
-    <a class="navElement">Log In | Sign Up</a>
+  <nav class="shadow">
+    <a class="brand" href="/">>_ AutoGrader</a>
+    <p class="navElement">Log In | Sign Up</p>
   </nav>
-  <div class="full">
-    <div class="content">
-      <div class="text">
-        <h1>Make Grading Easier</h1>
-        <p>Our platform gets rid of the need for you to compile, run, and test hundreds of assignments manually.</p>
-      </div>
-    </div><div class="content">
-      <div class="text">
-        <form action="login" method="post">
-        </form>
-        <h1>Login</h1>
+  <div class="full" style="background-color: #fff;">
+    <div class="loginPane">
+      <div class="loginContainer">
+        <button onclick="show(login)" class="">Login</button>
+        <button onclick="show(signup)">Sign Up</button>
+        <div id="login">
+          <form action="login" method="post">
+            <input class="inputText" type="text" name="username" placeholder="username"></input>
+            <input class="inputText" type="password" name="username" placeholder="password"></input>
+          </form>
+        </div>
+        <div id="login" style="display: none;">
+          <form action="login" method="post">
+            <input class="inputText" type="text" name="username" placeholder="username"></input>
+            <input class="inputText" type="password" name="username" placeholder="password"></input>
+          </form>
+        </div>
       </div>
     </div>
   </div>
