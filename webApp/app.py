@@ -6,5 +6,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
+def main():
     return render_template('pages/main.html')
+
+@app.route('/login')
+def login():
+    return render_template('pages/login.html')

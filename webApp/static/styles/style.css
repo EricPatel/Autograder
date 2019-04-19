@@ -51,6 +51,18 @@ nav{
   position: absolute;
   right: 10px;
   top: 10px;
+  color: #a30e22;
+  outline: none;
+  text-decoration: none; 
+}
+
+.navElement:visited{
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  outline: none;
+  color: #a30e22;
 }
 
 .title{
