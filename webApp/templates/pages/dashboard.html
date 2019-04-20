@@ -1,4 +1,4 @@
-{% extends 'dashboardbase.html' %}
+{% extends 'base.html' %}
 
 {% block body %}
   <nav class="shadow">
@@ -20,6 +20,8 @@
   <div class="full">
     <div class="spacer"></div>
     <form id="assignment 3" method="post" action="\assignment">
+      <input type="hidden"></input>
+    </form>
     <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
       <h1 class="red">Assignment 3</h1>
       <hr></hr>
@@ -27,14 +29,20 @@
       <p>Due Date: 4/18</p>
       <p class="progress notStarted">Not Started</p>
     </div>
-    <div class="assignment">
+    <form id="assignment 3" method="post" action="\assignment">
+      <input type="hidden"></input>
+    </form>
+    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
       <h1 class="red">Assignment 2</h1>
       <hr></hr>
       <div class="description"></div>
       <p>Due Date: 3/24</p>
       <p class="progress submitted">Submitted</p>
     </div>
-    <div class="assignment">
+    <form id="assignment 3" method="post" action="\assignment">
+      <input type="hidden"></input>
+    </form>
+    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
       <h1 class="red">Assignment 1</h1>
       <hr></hr>
       <div class="description"></div>
