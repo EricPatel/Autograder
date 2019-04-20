@@ -130,15 +130,17 @@ h1{
   justify-content: center;
   flex-direction: column;
   width: 30%;
-  margin: auto;
   height: 100%;
+  margin: auto;
 }
 
 .loginContainer{
-  height: 60%;
-  background-color: #a30e22;
+  height: 350px;
+  background-color: #fff;
   border-radius: 7px;
   text-align: left;
+  box-shadow: -1px -6px 23px 19px rgba(0,0,0,0.08);
+  width: 100%;
 }
 
 .image{
@@ -155,31 +157,108 @@ h1{
 
 .inputText{
     color: #a30e22;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #a30e22;
+    padding-top: 20px;
+    display: block;
+    width: 55%;
+    height: 42px;
+    margin: auto;
+    font-size: 28px;
 }
 
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+.inputText:focus{
+    outline: none;
+    border-bottom: 2px solid #a30e22;
 }
 
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
+.inputTextS{
+    color: #a30e22;
+    border: none;
+    border-bottom: 1px solid #a30e22;
+    padding-top: 5px;
+    display: block;
+    width: 55%;
+    height: 42px;
+    margin: auto;
+    font-size: 28px;
+}
+
+.inputTextS:focus{
+    outline: none;
+    border-bottom: 2px solid #a30e22;
+}
+
+.tab{
+  width: 50%;
+  height: 50px;
+  display: inline-block;
+  background-color: #af0e23;
+  color: #fff;
   border: none;
+  font-size: 32px;
   outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+  margin-bottom: 0px;
 }
 
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+::placeholder{
+  color: rgba(163, 14, 34, .8);
+}
+
+.r{
+  background-color: #fff;
+  color: #a30e22;
+}
+
+.left{
+  border-top-left-radius: 7px;
+}
+
+.right{
+  border-top-right-radius: 7px;
+}
+
+.panes{
+  align-items: center;
+  margin: auto;
+}
+
+.button{
+  font-size: 28px;
+  border-radius: 24px;
+  background-color: #a30e22;
+  color: #fff;
+  width: 60%;
+  height: 48px;
+  margin-left: 20%;
+  margin-top: 32px;
+}
+
+.button:focus{
+  outline: none;
+}
+
+.buttonS{
+  font-size: 28px;
+  border-radius: 24px;
+  background-color: #a30e22;
+  color: #fff;
+  width: 60%;
+  height: 48px;
+  margin-left: 20%;
+  margin-top: 15px;
+}
+
+.buttonS:focus{
+  outline: none;
+}
+
+#username1{
+  padding-top: 45px;
+}
+
+#username2{
+  padding-top: 15px;
 }
 
 @media screen and (max-width: 699px) {

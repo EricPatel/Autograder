@@ -6,21 +6,24 @@
     <a class="brand" href="/">>_ AutoGrader</a>
     <p class="navElement">Log In | Sign Up</p>
   </nav>
-  <div class="full" style="background-color: #fff;">
+  <div class="full">
     <div class="loginPane">
       <div class="loginContainer">
-        <button onclick="show(login)" class="">Login</button>
-        <button onclick="show(signup)">Sign Up</button>
-        <div id="login">
+        <button onclick="show(event, 'login')" class="tab left tablinks r">Login</button><button onclick="show(event, 'signup')" class="right tab tablinks">Sign Up</button>
+        <div class=" panes" id="login">
           <form action="login" method="post">
-            <input class="inputText" type="text" name="username" placeholder="username"></input>
+            <input id="username1" class="inputText" type="text" name="username" placeholder="username"></input>
             <input class="inputText" type="password" name="username" placeholder="password"></input>
+            <input class="button" type="submit" value="Login"></input>
           </form>
         </div>
-        <div id="login" style="display: none;">
+        <div class="panes" id="signup" style="display: none;">
           <form action="login" method="post">
-            <input class="inputText" type="text" name="username" placeholder="username"></input>
-            <input class="inputText" type="password" name="username" placeholder="password"></input>
+            <input id="username2" class="inputTextS" type="text" name="username" placeholder="Email Address"></input>
+            <input class="inputTextS" type="text" name="username" placeholder="Username"></input>
+            <input class="inputTextS" type="password" name="username" placeholder="Password"></input>
+            <input class="inputTextS" type="password" name="username" placeholder="Re-enter Password"></input>
+            <input class="buttonS" type="submit" value="Sign Up"></input>
           </form>
         </div>
       </div>
