@@ -35,7 +35,6 @@ nav{
   height: 40px;
   color: #a30e22;
   vertical-align: middle;
-
 }
 
 .shadow{
@@ -107,6 +106,10 @@ h1{
   display: inline;
 }
 
+div{
+  height: 100%;
+}
+
 .content{
   display: inline-table;
   width: 50%;
@@ -114,7 +117,7 @@ h1{
   vertical-align: middle;
   margin: auto;
   align-items: center;
-   justify-content: center;
+  justify-content: center;
 }
 
 .text{
@@ -123,6 +126,28 @@ h1{
   flex-direction: column;
   width: 60%;
   padding-left: 40%;
+}
+
+.navLink{
+  display: inline;
+  margin-left: 0px;
+}
+
+.link{
+    border: none;
+    font-size: 17px;
+    color: #a30e22;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 0px;
+}
+
+.link:focus{
+    border: none;
+    font-size: 17px;
+    color: #a30e22;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 0px;
+    outline: none;
 }
 
 .loginPane{
@@ -139,6 +164,8 @@ h1{
   background-color: #fff;
   border-radius: 7px;
   text-align: left;
+  -webkit-box-shadow: -1px -6px 23px 19px rgba(0,0,0,0.08);
+  -moz-box-shadow: -1px -6px 23px 19px rgba(0,0,0,0.08);
   box-shadow: -1px -6px 23px 19px rgba(0,0,0,0.08);
   width: 100%;
 }
@@ -253,14 +280,110 @@ h1{
   outline: none;
 }
 
+.assignment{
+    width: 50%;
+    height: 80px;
+    background-color: #fff;
+    margin: auto;
+    padding-top: 25px;
+    margin-bottom: 25px;
+    -webkit-box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+    -moz-box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+    box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.inverse{
+  color: #fff;
+}
+
+h1.red{
+  color: #a30e22;
+  font-size: 28px;
+}
+
 #username1{
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 #username2{
   padding-top: 20px;
 }
 
+hr{
+    width: 95%;
+    border: 1px solid #a30e22;
+    border-top: 0px;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+.description{
+  height: 7px;
+}
+
+p{
+  font-size: 18px;
+  padding-top: 0px;
+  margin-left: 20px;
+  display: inline;
+  color: #000;
+}
+
+.progress{
+  float: right;
+  padding-right: 20px;
+}
+
+.submitted{
+  color: #29b24a;
+}
+
+.notStarted{
+  color: #a3a3a3;
+}
+
+.incomplete{
+
+}
+
+.navTabs{
+  position: absolute;
+  right: 100px;
+  top: 10px;
+}
+
+.spacer{
+  height: 25px;
+}
+
+.assignmentDesc{
+  width: 50%;
+  height: 450px;
+  background-color: #fff;
+  margin: auto;
+  -webkit-box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+  -moz-box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+  box-shadow: -1px 6px 23px 19px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: 25px;
+  padding-top: 5px;
+}
+
+.projectDesc{
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-left: 0px;
+    width: 50%;
+}
+
+.padDesc{
+  padding-left: 20px;
+  padding-right: 20px;
+}
 @media screen and (max-width: 699px) {
   .text{
     width: 50%;
