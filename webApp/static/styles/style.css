@@ -162,9 +162,9 @@ h1{
     padding-top: 20px;
     display: block;
     width: 55%;
-    height: 42px;
+    height: 28px;
     margin: auto;
-    font-size: 28px;
+    font-size: 18px;
 }
 
 .inputText:focus{
@@ -176,12 +176,12 @@ h1{
     color: #a30e22;
     border: none;
     border-bottom: 1px solid #a30e22;
-    padding-top: 5px;
+    padding-top: 15px;
     display: block;
     width: 55%;
-    height: 42px;
+    height: 32px;
     margin: auto;
-    font-size: 28px;
+    font-size: 18px;
 }
 
 .inputTextS:focus{
@@ -196,7 +196,7 @@ h1{
   background-color: #af0e23;
   color: #fff;
   border: none;
-  font-size: 32px;
+  font-size: 24px;
   outline: none;
   margin-bottom: 0px;
 }
@@ -224,7 +224,7 @@ h1{
 }
 
 .button{
-  font-size: 28px;
+  font-size: 18px;
   border-radius: 24px;
   background-color: #a30e22;
   color: #fff;
@@ -239,7 +239,7 @@ h1{
 }
 
 .buttonS{
-  font-size: 28px;
+  font-size: 18px;
   border-radius: 24px;
   background-color: #a30e22;
   color: #fff;
@@ -254,11 +254,11 @@ h1{
 }
 
 #username1{
-  padding-top: 45px;
+  padding-top: 60px;
 }
 
 #username2{
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 @media screen and (max-width: 699px) {
