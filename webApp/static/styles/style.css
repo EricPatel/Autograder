@@ -261,6 +261,19 @@ div{
   margin-top: 32px;
 }
 
+.class{
+  color: #fff;
+  text-align: left;
+  margin-left: 0px;
+}
+
+.white{
+    border-color: #fff;
+    width: 49%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 .button:focus{
   outline: none;
 }
