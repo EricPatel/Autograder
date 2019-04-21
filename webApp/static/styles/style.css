@@ -274,6 +274,11 @@ div{
     margin-bottom: 15px;
 }
 
+.file{
+  border: 1px solid #fff;
+  font-size: 28px;
+}
+
 .button:focus{
   outline: none;
 }
