@@ -1,4 +1,4 @@
-# Run with command [FLASK_APP=app.py FLASK_DEBUG=1 flask run]
+# Run with command "python app.py"
 # Will reload on save
 
 from flask import Flask, render_template, redirect, url_for, request
@@ -34,3 +34,6 @@ def assignment():
 def signOut():
     #redirect as post
     return redirect('/')
+
+if __name__ == "__main__":
+    app.run(debug=True)
