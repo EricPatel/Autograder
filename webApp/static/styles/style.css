@@ -139,6 +139,11 @@ div{
     color: #a30e22;
     font-family: 'Ubuntu', sans-serif;
     padding: 0px;
+    background-color: #FFF;
+}
+
+.link:hover{
+  cursor: pointer;
 }
 
 .link:focus{
@@ -311,6 +316,9 @@ div{
     border-radius: 10px;
     text-align: left;
     padding-top: 5px;
+}
+.assignment:hover{
+  cursor: pointer;
 }
 
 .inverse{
