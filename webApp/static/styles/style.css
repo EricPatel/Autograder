@@ -327,7 +327,7 @@ h1.red{
 }
 
 #username2{
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 hr{
@@ -396,13 +396,64 @@ p{
     padding-bottom: 5px;
     margin-left: 0px;
     width: 50%;
-    color: #595959;
+    color: #a30e22;
 }
 
 .padDesc{
   padding-left: 20px;
   padding-right: 20px;
 }
+
+.onoffswitch {
+    position: relative; width: 107px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    margin: auto;
+    margin-top: 12px;
+    margin-bottom: -5px;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #999999; border-radius: 18px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin .7s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 21px; padding: 0; line-height: 21px;
+    font-size: 15px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Student";
+    padding-left: 20px;
+    background-color: #A30E22; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Professor";
+    padding-right: 10px;
+    background-color: #A30E22; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch{
+    display: block; width: 13px; margin: 4px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 82px;
+    border: 1px solid #999999; border-radius: 18px;
+    transition: all .7s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
 @media screen and (max-width: 699px) {
   .text{
     width: 50%;
