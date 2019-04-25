@@ -11,6 +11,7 @@ MongoDB:
       +Name
       +Classes
       +Professor/Student
+      +Email Address
 
     -Class
       +Assignments

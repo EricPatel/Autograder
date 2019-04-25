@@ -11,20 +11,23 @@
       <div class="loginContainer">
         <button onclick="show(event, 'login')" class="tab left tablinks r">Login</button><button onclick="show(event, 'signup')" class="right tab tablinks">Sign Up</button>
         <div class=" panes" id="login">
-          <form action="login" method="post">
-            <input id="username1" class="inputText" type="text" name="username" placeholder="username"></input>
-            <input class="inputText" type="password" name="username" placeholder="password"></input>
+          <form action="/login" method="post">
+            <input id="username1" class="inputText" type="text" name="email" placeholder="Email Address"></input>
+            <input class="inputText" type="password" name="password" placeholder="Password"></input>
             <input class="button" type="submit" value="Login"></input>
           </form>
+          {% if error is eq 'error' %}
+            <p class="error">Invalid Credentials</p>
+          {% endif %}
         </div>
         <div class="panes" id="signup" style="display: none;">
           <form action="signup" method="post">
-            <input id="username2" class="inputTextS" type="text" name="username" placeholder="Email Address"></input>
-            <input class="inputTextS" type="text" name="username" placeholder="Username"></input>
-            <input class="inputTextS" type="password" name="username" placeholder="Password"></input>
-            <input class="inputTextS" type="password" name="username" placeholder="Re-enter Password"></input>
+            <input id="username2" class="inputTextS" type="text" name="name" placeholder="Name"></input>
+            <input class="inputTextS" type="text" name="email" placeholder="Email Address"></input>
+            <input class="inputTextS" type="password" name="password" placeholder="Password"></input>
+            <input class="inputTextS" type="password" name="passwordConfirm" placeholder="Re-enter Password"></input>
             <div class="onoffswitch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                <input type="checkbox" name="type" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                 <label class="onoffswitch-label" for="myonoffswitch">
                     <span class="onoffswitch-inner"></span>
                     <span class="onoffswitch-switch"></span>

@@ -253,6 +253,7 @@ div{
 .panes{
   align-items: center;
   margin: auto;
+  text-align: center;
 }
 
 .button{
@@ -262,8 +263,8 @@ div{
   color: #fff;
   width: 60%;
   height: 48px;
-  margin-left: 20%;
   margin-top: 32px;
+  margin-bottom: 25px;
 }
 
 .class{
@@ -295,7 +296,6 @@ div{
   color: #fff;
   width: 60%;
   height: 48px;
-  margin-left: 20%;
   margin-top: 15px;
 }
 
@@ -437,7 +437,7 @@ p{
 }
 .onoffswitch-inner:before {
     content: "Student";
-    padding-left: 20px;
+    padding-right: 7px;
     background-color: #A30E22; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
@@ -450,7 +450,7 @@ p{
     display: block; width: 13px; margin: 4px;
     background: #FFFFFF;
     position: absolute; top: 0; bottom: 0;
-    right: 82px;
+    right: 84px;
     border: 1px solid #999999; border-radius: 18px;
     transition: all .7s ease-in 0s;
 }
@@ -483,6 +483,11 @@ p{
   }
 }
 
+.error{
+  color: #A30E22;
+  margin-top: 10px;
+  margin-left: 0px;
+}
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 812px)
