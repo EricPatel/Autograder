@@ -1,12 +1,17 @@
 # Run with command "python app.py"
 # Will reload on save
 
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
+import os
 
 app = Flask(__name__)
+
 app.config["MONGO_URI"] = "mongodb://localhost:27017/AutoGrader"
 mongo = PyMongo(app)
+
+app.secret_key = os.urandom(24);
+print(app.secret_key)
 
 #routing for the main page
 @app.route('/')
@@ -24,6 +29,9 @@ def validateLogin():
     #redirect as post
     user = mongo.db.User.find_one({'emailAddress' : request.form['email']})
     if user != None and user['password'] == request.form['password']:
+        session['user'] = str(user['_id'])
+        session['type'] = user['type']
+        print(session)
         return redirect(url_for('dashboard'), code=307)
     return render_template('pages/login.html', error="error")
 
@@ -46,7 +54,10 @@ def createUser():
 #routing for the dashboard
 @app.route('/dashboard', methods=["POST"])
 def dashboard():
-    return render_template('pages/dashboard.html')
+    if(session['type'] == 'student'):
+        return render_template('pages/dashboard.html')
+    else:
+        return render_template('pages/dashboardP.html')
 
 @app.route('/assignment', methods=["POST"])
 def assignment():
@@ -55,6 +66,7 @@ def assignment():
 @app.route('/signout', methods=["POST"])
 def signOut():
     #redirect as post
+    session.pop('user', None)
     return redirect('/')
 
 if __name__ == "__main__":
