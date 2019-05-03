@@ -1,12 +1,46 @@
 # Run with command "python app.py"
 # Will reload on save
 
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_pymongo import PyMongo
+from werkzeug.utils import secure_filename
+import os
+import sys
+sys.path.append('../')
+from pythonSupport import grader
+
+UPLOAD_FOLDER = r"C:\Users\shrey\Documents\Prin Prog\Final Project\AutograderApp\studentSubmissions"
+ALLOWED_EXTENSIONS = set(['txt', 'py', 'c', 'java', 'hs'])
+
 
 app = Flask(__name__)
+app.secret_key = "secret key"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/AutoGrader"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mongo = PyMongo(app)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return render_template('pages/assignment.html', status="")
+
+    student_file = request.files['file']
+    if student_file.filename == '':
+        return render_template('pages/assignment.html', status="noFile")
+
+    if student_file and allowed_file(student_file.filename):
+        filename = secure_filename(student_file.filename)
+        student_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        mypath = os.path.join(os.path.dirname(__file__))
+        mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\" + filename
+        print(mypath, file=sys.stdout)
+        score, total = grader.grade(mypath)
+        return render_template('pages/assignment.html', status="uploaded", score=score, total=total)
+    
+        
 
 #routing for the main page
 @app.route('/')
