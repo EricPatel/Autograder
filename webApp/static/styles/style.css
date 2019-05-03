@@ -30,6 +30,15 @@ html::-webkit-scrollbar { /* WebKit */
   height: 0;
 }
 
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #a30e22 !important;
+}
+
 p{
     font-size: 18px;
     margin: 0;
@@ -340,7 +349,7 @@ h1.red{
 }
 
 #username1{
-  padding-top: 65px;
+  margin-top: 45px;
 }
 
 #username2{

@@ -1,6 +1,7 @@
 # Run with command "python app.py"
 # Will reload on save
 
+<<<<<<< HEAD
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
@@ -15,10 +16,19 @@ ALLOWED_EXTENSIONS = set(['txt', 'py', 'c', 'java', 'hs'])
 
 app = Flask(__name__)
 app.secret_key = "secret key"
+=======
+from flask import Flask, render_template, redirect, url_for, request, session
+from flask_pymongo import PyMongo
+import os
+
+app = Flask(__name__)
+
+>>>>>>> 0c0407ea8713f042d8d543aff9b779edb5155e87
 app.config["MONGO_URI"] = "mongodb://localhost:27017/AutoGrader"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mongo = PyMongo(app)
 
+<<<<<<< HEAD
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -41,6 +51,10 @@ def upload_file():
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total)
     
         
+=======
+app.secret_key = os.urandom(24);
+print(app.secret_key)
+>>>>>>> 0c0407ea8713f042d8d543aff9b779edb5155e87
 
 #routing for the main page
 @app.route('/')
@@ -58,6 +72,9 @@ def validateLogin():
     #redirect as post
     user = mongo.db.User.find_one({'emailAddress' : request.form['email']})
     if user != None and user['password'] == request.form['password']:
+        session['user'] = str(user['_id'])
+        session['type'] = user['type']
+        print(session)
         return redirect(url_for('dashboard'), code=307)
     return render_template('pages/login.html', error="error")
 
@@ -80,7 +97,10 @@ def createUser():
 #routing for the dashboard
 @app.route('/dashboard', methods=["POST"])
 def dashboard():
-    return render_template('pages/dashboard.html')
+    if(session['type'] == 'student'):
+        return render_template('pages/dashboard.html')
+    else:
+        return render_template('pages/dashboardP.html')
 
 @app.route('/assignment', methods=["POST"])
 def assignment():
@@ -89,6 +109,7 @@ def assignment():
 @app.route('/signout', methods=["POST"])
 def signOut():
     #redirect as post
+    session.pop('user', None)
     return redirect('/')
 
 if __name__ == "__main__":
