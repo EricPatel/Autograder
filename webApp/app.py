@@ -1,7 +1,6 @@
 # Run with command "python app.py"
 # Will reload on save
 
-<<<<<<< HEAD
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
@@ -16,19 +15,10 @@ ALLOWED_EXTENSIONS = set(['txt', 'py', 'c', 'java', 'hs'])
 
 app = Flask(__name__)
 app.secret_key = "secret key"
-=======
-from flask import Flask, render_template, redirect, url_for, request, session
-from flask_pymongo import PyMongo
-import os
-
-app = Flask(__name__)
-
->>>>>>> 0c0407ea8713f042d8d543aff9b779edb5155e87
 app.config["MONGO_URI"] = "mongodb://localhost:27017/AutoGrader"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mongo = PyMongo(app)
 
-<<<<<<< HEAD
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -51,10 +41,6 @@ def upload_file():
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total)
     
         
-=======
-app.secret_key = os.urandom(24);
-print(app.secret_key)
->>>>>>> 0c0407ea8713f042d8d543aff9b779edb5155e87
 
 #routing for the main page
 @app.route('/')
