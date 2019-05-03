@@ -1,7 +1,7 @@
 # Run with command "python app.py"
 # Will reload on save
 
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, sessions
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 import os
@@ -39,8 +39,8 @@ def upload_file():
         print(mypath, file=sys.stdout)
         score, total = grader.grade(mypath)
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total)
-    
-        
+
+
 
 #routing for the main page
 @app.route('/')
