@@ -1,7 +1,7 @@
 # Run with command "python app.py"
 # Will reload on save
 
-from flask import Flask, render_template, redirect, url_for, request, sessions
+from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 import os
