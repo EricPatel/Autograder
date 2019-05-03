@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <nav class="shadow">
+    <a class="brand">>_ AutoGrader</a>
+    <div class="navTabs">
+      <form class="navLink" action="/dashboard" method="post">
+        <button type="submit" class="link">My Classes</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/create" method="post">
+        <button type="submit" class="link">Create a Class</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/signout" method="post">
+        <button type="submit" class="link">Sign Out</button>
+      </form>
+    </div>
+  </nav>
+  <div class="full">
+    <div class="spacer"></div>
+    <h1 class="class">Classes</h1>
+    <hr class="white"></hr>
+    <form id="assignment 3" method="post" action="\class">
+      <input type="hidden"></input>
+    </form>
+    <div class="assignment center" onclick="document.getElementById('assignment 3').submit();">
+      <h1 class="red p">Principles of Programming</h1>
+    </div>
+    <form id="assignment 3" method="post" action="\assignment">
+      <input type="hidden"></input>
+    </form>
+    <div class="assignment center" onclick="document.getElementById('assignment 3').submit();">
+      <h1 class="red p">Computer Architecture</h1>
+    </div>
+  </div>
+{% endblock %}

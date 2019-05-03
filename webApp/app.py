@@ -57,11 +57,19 @@ def dashboard():
     if(session['type'] == 'student'):
         return render_template('pages/dashboard.html')
     else:
-        return render_template('pages/dashboardP.html')
+        return render_template('pages/dashboardProfessor.html')
 
 @app.route('/assignment', methods=["POST"])
 def assignment():
     return render_template('pages/assignment.html')
+
+@app.route('/class', methods=["POST"])
+def classPage():
+    return render_template('pages/class.html')
+
+@app.route('/create', methods=["POST"])
+def create():
+    return render_template('pages/create.html')
 
 @app.route('/signout', methods=["POST"])
 def signOut():

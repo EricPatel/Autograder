@@ -16,7 +16,8 @@ MongoDB:
     -Class
       +Assignments
       +Students
-      +Professor
+        - Student IDs
+      +Professor ID
       +Class Code
 
     -Assignment

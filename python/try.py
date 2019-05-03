@@ -11,8 +11,9 @@ for file in os.listdir("results"):
 
 for x in range(len(tests)):
     user = os.popen("cat tests/" + tests[x] + " | python3 rpn.py").read()
-    #cat test | python3 assigment.py
+    print(user)
     result = os.popen("cat results/" + results[x]).read()
+    print(result)
     if user == result :
         print("Passed " + tests[x])
     else:

@@ -330,6 +330,15 @@ div{
   cursor: pointer;
 }
 
+.center{
+  text-align: center;
+}
+
+.p{
+  margin-top: 10px;
+  line-height: 74px;
+}
+
 .inverse{
   color: #fff;
 }
@@ -469,6 +478,25 @@ p{
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
+}
+
+.back{
+    position: absolute;
+    top: 65px;
+    left: 100px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 24px;
+    font-family: inherit;
+}
+
+.back:hover{
+  cursor: pointer;
+}
+
+.back:focus{
+  outline: none;
 }
 
 @media screen and (max-width: 699px) {

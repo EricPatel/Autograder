@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <nav class="shadow">
+    <a class="brand">>_ AutoGrader</a>
+    <div class="navTabs">
+      <form class="navLink" action="/dashboard" method="post">
+        <button type="submit" class="link">My Classes</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/addAClass" method="post">
+        <button type="submit" class="link">Create a Class</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/signout" method="post">
+        <button type="submit" class="link">Sign Out</button>
+      </form>
+    </div>
+  </nav>
+  <div class="full">
+    
+  </div>
+{% endblock %}

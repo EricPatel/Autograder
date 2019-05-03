@@ -9,7 +9,7 @@
       </form>
       <p class="navLink"> | </p>
       <form class="navLink" action="/addAClass" method="post">
-        <button type="submit" class="link">Create a Class</button>
+        <button type="submit" class="link">Add a Class</button>
       </form>
       <p class="navLink"> | </p>
       <form class="navLink" action="/signout" method="post">
@@ -29,7 +29,6 @@
       <hr></hr>
       <div class="description"></div>
       <p>Due Date: 4/18</p>
-      <p class="progress notStarted">Not Started</p>
     </div>
     <form id="assignment 3" method="post" action="\assignment">
       <input type="hidden"></input>
@@ -39,7 +38,6 @@
       <hr></hr>
       <div class="description"></div>
       <p>Due Date: 3/24</p>
-      <p class="progress submitted">Submitted</p>
     </div>
     <form id="assignment 3" method="post" action="\assignment">
       <input type="hidden"></input>
@@ -49,20 +47,6 @@
       <hr></hr>
       <div class="description"></div>
       <p>Due Date: 3/10</p>
-      <p class="progress submitted">Submitted</p>
-    </div>
-
-    <h1 class="class">Computer Architecture</h1>
-    <hr class="white"></hr>
-    <form id="assignment 1" method="post" action="\assignment">
-      <input type="hidden"></input>
-    </form>
-    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
-      <h1 class="red">Assignment 1</h1>
-      <hr></hr>
-      <div class="description"></div>
-      <p>Due Date: 4/24</p>
-      <p class="progress notStarted">Not Started</p>
     </div>
   </div>
 {% endblock %}
