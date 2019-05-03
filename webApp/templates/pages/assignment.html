@@ -29,8 +29,31 @@
       <div class="padDesc">
         <p class="projectDesc">Due Date:</p><p class="projectDesc">Apr 18, 2019 11:55 pm</p>
         <p class="projectDesc">Number of resubmissions allowed</p><p class="projectDesc">Unlimited</p>
+<<<<<<< HEAD
         <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">(max 100.00)</p>
         <p class="projectDesc">Status</p><p class="projectDesc">Not Started</p>
+=======
+        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{score}} (max {{total}})</p>
+        <p class="projectDesc">Status</p>
+        {% if status is eq 'uploaded' %}
+        <p class="projectDesc" style="display: inline">Submitted!</p>
+        {% else %}
+        <p class="projectDesc" style="display: inline">Not Started</p>
+        {% endif %}
+
+        {% if (status != "uploaded") %}
+          <form id="fileUpload" action="upload" method=post enctype=multipart/form-data>
+            <p><input type=file name=file>
+                <input type=submit value=Upload>
+          </form>
+        {% endif %}
+        
+        {% if status is eq 'noFile' %}
+            <p class="error">Please select a file to upload</p>
+        {% endif %}
+        
+
+>>>>>>> 376fc5206a92383953e31926f0999c90ef3a87fe
       </div>
     </div>
   </div>
