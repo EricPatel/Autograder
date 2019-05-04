@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <nav class="shadow">
+    <a class="brand">>_ AutoGrader</a>
+    <div class="navTabs">
+      <form class="navLink" action="/dashboard" method="post">
+        <button type="submit" class="link">My Classes</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/create" method="post">
+        <button type="submit" class="link">Create a Class</button>
+      </form>
+      <p class="navLink"> | </p>
+      <form class="navLink" action="/signout" method="post">
+        <button type="submit" class="link">Sign Out</button>
+      </form>
+    </div>
+  </nav>
+  <form class="assignmentCreate" action="\createAssignmentSubmit" method="post">
+    <input type="hidden" value="{{id}}" name="class"></input>
+    <input class="assignInput" type="text" name="name" placeholder="Assignment Name"></input>
+    <input class="assignInput" type="text" name="dueDate" placeholder="Due Date"></input>
+    <input class="assignInput" type="text" name="language" placeholder="Language"></input>
+    <input class="assignInput" type="text" name="runCommand" placeholder="Run Command"></input>
+    <p class="fileDesc">Description</p><input class="fileInput1" type="file" value=""></input>
+    <p class="fileDesc">Tests</p><input class="fileInput2" type="file"></input>
+    <p class="fileDesc">Results</p><input class="fileInput3" type="file"></input>
+    <select class="dropdown" name="runType">
+      <option value="CL">Command Line</option>
+      <option value="UI">User Input</option>
+    </select>
+    <input class="buttonCreate assign" type="submit" value="Create Assignment"></input>
+  </form>
+{% endblock %}

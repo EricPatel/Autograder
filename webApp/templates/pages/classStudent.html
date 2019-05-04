@@ -8,8 +8,8 @@
         <button type="submit" class="link">My Classes</button>
       </form>
       <p class="navLink"> | </p>
-      <form class="navLink" action="/create" method="post">
-        <button type="submit" class="link">Create a Class</button>
+      <form class="navLink" action="/addAClass" method="post">
+        <button type="submit" class="link">Add a Class</button>
       </form>
       <p class="navLink"> | </p>
       <form class="navLink" action="/signout" method="post">
@@ -18,16 +18,11 @@
     </div>
   </nav>
   <div class="full">
-    <form action="\createAssignment" method="post">
-      <input class="create" type="submit" value="+ Assignment"></input>
-      <input type="hidden" value="{{classInfo._id}}" name="class"></input>
-    </form>
     <div class="spacer"></div>
-    <p class="classCode">Class Code: {{classInfo.classCode}}</p>
     <h1 class="class">{{classInfo.name}}</h1>
     <hr class="white"></hr>
     {% for assignment in assignments -%}
-    <form id="{{assignment._id}}" method="post" action="\result">
+    <form id="{{assignment._id}}" method="post" action="\assignment">
       <input type="hidden" value="{{assignment._id}}" name="assignment"></input>
       <input type="hidden" value="{{classInfo._id}}" name="class"></input>
     </form>

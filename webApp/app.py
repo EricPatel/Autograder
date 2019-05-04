@@ -3,9 +3,11 @@
 
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
+from bson import ObjectId
 from werkzeug.utils import secure_filename
 import os
 import sys
+import random
 sys.path.append('../')
 from pythonSupport import grader
 
@@ -66,7 +68,6 @@ def validateLogin():
 
 @app.route('/signup', methods=["POST"])
 def createUser():
-    print(request.form)
     type = 'student'
     if(len(request.form.getlist('type')) < 1):
         type = 'professor'
@@ -84,21 +85,94 @@ def createUser():
 @app.route('/dashboard', methods=["POST"])
 def dashboard():
     if(session['type'] == 'student'):
-        return render_template('pages/dashboard.html')
+        user = mongo.db.User.find_one({'_id' : ObjectId(session['user'])})
+        classIds = user['classes']
+        classes = []
+        for id in classIds:
+            classes.append(mongo.db.Class.find_one({'_id' : id}))
+        print(classes)
+        return render_template('pages/dashboard.html', classes=classes)
     else:
-        return render_template('pages/dashboardProfessor.html')
+        classes = mongo.db.Class.find({'professor' : ObjectId(session['user'])})
+        return render_template('pages/dashboardProfessor.html', classes=classes)
 
 @app.route('/assignment', methods=["POST"])
 def assignment():
-    return render_template('pages/assignment.html')
+    classInfo = request.form['class']
+    assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(request.form['assignment'])})
+    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment)
 
 @app.route('/class', methods=["POST"])
 def classPage():
-    return render_template('pages/class.html')
+    classInfo = mongo.db.Class.find_one({'_id' : ObjectId(request.form['class'])})
+    assignments = []
+    for assignmentID in classInfo['assignments']:
+        assignments.append(mongo.db.Assignment.find_one({'_id' : assignmentID}))
+    if(session['type'] == 'student'):
+        return render_template('pages/classStudent.html', classInfo=classInfo, assignments=assignments)
+    else:
+        return render_template('pages/class.html', classInfo=classInfo, assignments=assignments)
 
 @app.route('/create', methods=["POST"])
 def create():
     return render_template('pages/create.html')
+
+@app.route('/createClass', methods=["POST"])
+def createClass():
+    id = session['user']
+    code = str(id)[-3:]+ str(random.randint(100,1000))
+    id = mongo.db.Class.insert_one({
+        'name' : request.form['name'],
+        'professor' : ObjectId(id),
+        'students' : [],
+        'assignments' : [],
+        'classCode' : code
+    }).inserted_id
+    mongo.db.User.update({ '_id' : ObjectId(session['user'])}, { '$push' : { 'classes' : id}})
+    return redirect(url_for('dashboard'), code=307)
+
+@app.route('/createAssignment', methods=["POST"])
+def createAssignmentRoute():
+    return render_template('pages/createAssignment.html', id=request.form['class'])
+
+@app.route('/createAssignmentSubmit', methods=["POST"])
+def createAssignment():
+    id = mongo.db.Assignment.insert_one({
+        'name' : request.form['name'],
+        'dueDate' : request.form['dueDate'],
+        'language' : request.form['language'],
+        'runCommand' : request.form['runCommand'],
+        'type' : request.form['runType']
+    }).inserted_id
+    mongo.db.Class.update({
+        '_id' : ObjectId(request.form['class'])
+    },{
+        '$push' : { 'assignments' : id }
+    })
+    return redirect(url_for('dashboard'), code=307)
+
+@app.route('/addAClass', methods=["POST"])
+def addAClass():
+    return render_template('pages/addClass.html')
+
+@app.route('/enroll', methods=["POST"])
+def enroll():
+    mongo.db.Class.update({
+        'classCode' : request.form['name']
+    }, { '$push' : { 'students' : ObjectId(session['user'])}})
+    id = mongo.db.Class.find_one({
+        'classCode' : request.form['name']
+    })
+    print(id)
+    mongo.db.User.update({
+        '_id' : ObjectId(session['user'])
+    }, { '$push' : { 'classes' : id['_id']}})
+    return redirect(url_for('dashboard'), code=307)
+
+@app.route('/result', methods=["POST"])
+def result():
+    classInfo = request.form['class']
+    return render_template('pages/result.html', classInfo=classInfo)
 
 @app.route('/signout', methods=["POST"])
 def signOut():
@@ -107,4 +181,4 @@ def signOut():
     return redirect('/')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=int(80), host='0.0.0.0')

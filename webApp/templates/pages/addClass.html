@@ -18,16 +18,11 @@
     </div>
   </nav>
   <div class="full">
-    <div class="spacer"></div>
-    <h1 class="class">Classes</h1>
-    <hr class="white"></hr>
-    {% for class in classes -%}
-    <form id="{{class._id}}" method="post" action="\class">
-      <input type="hidden" name="class" value="{{class._id}}"></input>
-    </form>
-    <div class="assignment center" onclick="document.getElementById('{{class._id}}').submit();">
-      <h1 class="red p">{{class.name}}</h1>
+    <div class="container">
+      <form action="\enroll" method="post">
+        <input class="classRegister" type="text" name="name" placeholder="Enter the Class Code"></input>
+        <input class="buttonCreate" type="submit" value="Add Class"></input>
+      </form>
     </div>
-    {%- endfor %}
   </div>
 {% endblock %}

@@ -18,18 +18,18 @@
     </div>
   </nav>
   <div class="full">
-    <form action="\dashboard" method="post">
+    <form action="\class" method="post">
       <input class="back" type="submit" value="< Back">
+      <input type="hidden" value="{{classInfo}}" name="class">
     </form>
     <div class="spacer"></div>
     <div class="assignmentDesc">
-      <h1 class="red">Assignment 3</h1>
+      <h1 class="red">{{assignment.name}}</h1>
       <hr></hr>
       <div class="description"></div>
       <div class="padDesc">
-        <p class="projectDesc">Due Date:</p><p class="projectDesc">Apr 18, 2019 11:55 pm</p>
-        <p class="projectDesc">Number of resubmissions allowed</p><p class="projectDesc">Unlimited</p>
-        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{score}} (max {{total}})</p>
+        <p class="projectDesc">Due Date:</p><p class="projectDesc">{{assignment.dueDate}}</p>
+        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{score}} (max{{total}})</p>
         <p class="projectDesc">Status</p>
           {% if status is eq 'uploaded' %}
             <p class="projectDesc" style="display: inline">Submitted!</p>

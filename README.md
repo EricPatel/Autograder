@@ -21,15 +21,14 @@ MongoDB:
       +Class Code
 
     -Assignment
-      +Description
+      +Name
       +Due Date
-      +Number of resubmissions
       +Run command
-      +Tests
-      +Results
-      +Grade
       +Command Line / User Input
       +Language
+      +Description
+      +Tests
+      +Results
 
     -Submission
       +

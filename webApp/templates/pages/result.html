@@ -18,16 +18,30 @@
     </div>
   </nav>
   <div class="full">
-    <div class="spacer"></div>
-    <h1 class="class">Classes</h1>
-    <hr class="white"></hr>
-    {% for class in classes -%}
-    <form id="{{class._id}}" method="post" action="\class">
-      <input type="hidden" name="class" value="{{class._id}}"></input>
+    <form action="\class" method="post">
+      <input class="back" type="submit" value="< Back">
+      <input type="hidden" value="{{classInfo}}" name="class">
     </form>
-    <div class="assignment center" onclick="document.getElementById('{{class._id}}').submit();">
-      <h1 class="red p">{{class.name}}</h1>
-    </div>
-    {%- endfor %}
+    <div class="spacer"></div>
+    <h1 class="class">Results</h1>
+    <hr class="white"></hr>
+    <table class="results">
+      <tr>
+        <th>Student's Name</th>
+        <th class="centerH">Score</th>
+      </tr>
+      <tr>
+        <td>Eric Patel</td>
+        <td class="score">90</td>
+      </tr>
+      <tr>
+        <td>Jade Aulet</td>
+        <td class="score">80</td>
+      </tr>
+      <tr>
+        <td>Shrey Bohra</td>
+        <td class="score">100</td>
+      </tr>
+    </table>
   </div>
 {% endblock %}

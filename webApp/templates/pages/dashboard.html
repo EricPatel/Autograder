@@ -19,50 +19,15 @@
   </nav>
   <div class="full">
     <div class="spacer"></div>
-    <h1 class="class">Principles Of Programming</h1>
+    <h1 class="class">Classes</h1>
     <hr class="white"></hr>
-    <form id="assignment 3" method="post" action="\assignment">
-      <input type="hidden"></input>
+    {% for class in classes -%}
+    <form id="{{class._id}}" method="post" action="\class">
+      <input type="hidden" name="class" value="{{class._id}}"></input>
     </form>
-    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
-      <h1 class="red">Assignment 3</h1>
-      <hr></hr>
-      <div class="description"></div>
-      <p>Due Date: 4/18</p>
-      <p class="progress notStarted">Not Started</p>
+    <div class="assignment center" onclick="document.getElementById('{{class._id}}').submit();">
+      <h1 class="red p">{{class.name}}</h1>
     </div>
-    <form id="assignment 3" method="post" action="\assignment">
-      <input type="hidden"></input>
-    </form>
-    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
-      <h1 class="red">Assignment 2</h1>
-      <hr></hr>
-      <div class="description"></div>
-      <p>Due Date: 3/24</p>
-      <p class="progress submitted">Submitted</p>
-    </div>
-    <form id="assignment 3" method="post" action="\assignment">
-      <input type="hidden"></input>
-    </form>
-    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
-      <h1 class="red">Assignment 1</h1>
-      <hr></hr>
-      <div class="description"></div>
-      <p>Due Date: 3/10</p>
-      <p class="progress submitted">Submitted</p>
-    </div>
-
-    <h1 class="class">Computer Architecture</h1>
-    <hr class="white"></hr>
-    <form id="assignment 1" method="post" action="\assignment">
-      <input type="hidden"></input>
-    </form>
-    <div class="assignment" onclick="document.getElementById('assignment 3').submit();">
-      <h1 class="red">Assignment 1</h1>
-      <hr></hr>
-      <div class="description"></div>
-      <p>Due Date: 4/24</p>
-      <p class="progress notStarted">Not Started</p>
-    </div>
+    {%- endfor %}
   </div>
 {% endblock %}
