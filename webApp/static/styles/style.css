@@ -121,6 +121,7 @@ nav{
   background-color: #a30e22;
   color: #fff;
   text-align: center;
+  overflow: auto;
 }
 
 h1{
@@ -572,7 +573,7 @@ p{
   background-color: #fff;
   margin: auto;
   width: 500px;
-  height: 352px;
+  height: 375px;
   margin-top: calc(50vh - 198px);
   border-radius: 7px;
 }
@@ -627,13 +628,18 @@ p{
 
 .assign{
   font-size: 24px;
-  width: 300px;
+  width: 230px;
   margin-left: 100px;
   text-align: left;
   padding-left: 0px;
   margin-top: -5px;
   font-family: inherit;
   height: 48px;
+  position: relative;
+  left: 9%;
+  background: #a30e22;
+  color: white;
+  padding-left: 10px;
 }
 
 .assign:focus{
@@ -651,8 +657,10 @@ p{
 }
 
 .fileInput1{
-  padding-left: 18px;
-  color: #A30E22;
+  color: #a30e22;
+  position: relative;
+  bottom: 4px;
+  left: 4px;
   font-family: inherit;
 }
 

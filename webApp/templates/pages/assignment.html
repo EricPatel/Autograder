@@ -29,7 +29,7 @@
       <div class="description"></div>
       <div class="padDesc">
         <p class="projectDesc">Due Date:</p><p class="projectDesc">{{assignment.dueDate}}</p>
-        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{score}} (max{{total}})</p>
+        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{score}} (max {{assignment.total}})</p>
         <p class="projectDesc">Status</p>
           {% if status is eq 'uploaded' %}
             <p class="projectDesc" style="display: inline">Submitted!</p>
@@ -37,12 +37,17 @@
             <p class="projectDesc" style="display: inline">Not Started</p>
           {% endif %}
 
-          {% if (status != "uploaded") %}
+          
             <form id="fileUpload" action="upload" method=post enctype=multipart/form-data>
+              {% if (status != "uploaded") %}
               <p><input type=file name=file>
                 <input type=submit value=Upload>
+              {% endif %}
+                <input type=hidden value="{{assignId}}" name="assignId">
+                <input type=hidden value="{{assignment}}" name="assignment">
+                <input type="hidden" value="{{classInfo}}" name="class">
             </form>
-          {% endif %}
+          
 
           {% if status is eq 'noFile' %}
             <p class="error">Please select a file to upload</p>

@@ -17,19 +17,28 @@
       </form>
     </div>
   </nav>
-  <form class="assignmentCreate" action="\createAssignmentSubmit" method="post">
-    <input type="hidden" value="{{id}}" name="class"></input>
-    <input class="assignInput" type="text" name="name" placeholder="Assignment Name"></input>
-    <input class="assignInput" type="text" name="dueDate" placeholder="Due Date"></input>
-    <input class="assignInput" type="text" name="language" placeholder="Language"></input>
-    <input class="assignInput" type="text" name="runCommand" placeholder="Run Command"></input>
-    <p class="fileDesc">Description</p><input class="fileInput1" type="file" value=""></input>
-    <p class="fileDesc">Tests</p><input class="fileInput2" type="file"></input>
-    <p class="fileDesc">Results</p><input class="fileInput3" type="file"></input>
-    <select class="dropdown" name="runType">
-      <option value="CL">Command Line</option>
-      <option value="UI">User Input</option>
-    </select>
-    <input class="buttonCreate assign" type="submit" value="Create Assignment"></input>
-  </form>
+  <div>
+      <form class="assignmentCreate" enctype="multipart/form-data" action="\createAssignmentSubmit" method="post">
+          <input type="hidden" value="{{id}}" name="class"></input>
+          <input class="assignInput" type="text" name="name" placeholder="Assignment Name"></input>
+          <input class="assignInput" type="text" name="dueDate" placeholder="Due Date"></input>
+          <input class="assignInput" type="text" name="language" placeholder="Language"></input>
+          <input class="assignInput" type="text" name="runCommand" placeholder="Run Command"></input>
+          <div style="height: 40px">
+             <p class="fileDesc">Description</p><input class="fileInput1" type=file name="descFile">
+          </div>
+          <div style="height: 40px">
+              <p class="fileDesc">Tests</p><input class="fileInput1" value="Choose files" type=file name="testFiles" multiple>
+           </div>
+           <div style="height: 40px">
+              <p class="fileDesc">Results</p><input class="fileInput1" value="Choose Files" type=file name="resultFiles" multiple>
+           </div>
+          <select class="dropdown" name="runType">
+            <option value="CL">Command Line</option>
+            <option value="UI">User Input</option>
+          </select>
+          <input class="buttonCreate assign" type="submit" value="Create Assignment"></input>
+      </form>
+  </div>
+  
 {% endblock %}

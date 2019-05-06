@@ -11,6 +11,7 @@ import random
 sys.path.append('../')
 from pythonSupport import grader
 
+
 UPLOAD_FOLDER = r"C:\Users\shrey\Documents\Prin Prog\Final Project\AutograderApp\studentSubmissions"
 ALLOWED_EXTENSIONS = set(['txt', 'py', 'c', 'java', 'hs'])
 
@@ -26,23 +27,25 @@ def allowed_file(filename):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    classInfo = request.form['class']
+    assignId = request.form['assignId']
+    assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
+
     if 'file' not in request.files:
-        return render_template('pages/assignment.html', status="")
+        return render_template('pages/assignment.html', status="noFile", assignment=assignment, classInfo=classInfo, assignId=assignId)
 
     student_file = request.files['file']
     if student_file.filename == '':
-        return render_template('pages/assignment.html', status="noFile")
+        return render_template('pages/assignment.html', status="noFile", assignment=assignment, classInfo=classInfo, assignId=assignId)
 
     if student_file and allowed_file(student_file.filename):
         filename = secure_filename(student_file.filename)
         student_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         mypath = os.path.join(os.path.dirname(__file__))
         mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\" + filename
-        print(mypath, file=sys.stdout)
-        score, total = grader.grade(mypath)
-        return render_template('pages/assignment.html', status="uploaded", score=score, total=total)
-
-
+ 
+        score, total = grader.grade(mypath, assignId)
+        return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId)
 
 #routing for the main page
 @app.route('/')
@@ -82,7 +85,7 @@ def createUser():
     return redirect(url_for('login'))
 
 #routing for the dashboard
-@app.route('/dashboard', methods=["POST"])
+@app.route('/dashboard', methods=["POST", "GET"])
 def dashboard():
     if(session['type'] == 'student'):
         user = mongo.db.User.find_one({'_id' : ObjectId(session['user'])})
@@ -100,7 +103,7 @@ def dashboard():
 def assignment():
     classInfo = request.form['class']
     assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(request.form['assignment'])})
-    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment)
+    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment, assignId=request.form['assignment'])
 
 @app.route('/class', methods=["POST"])
 def classPage():
@@ -137,19 +140,48 @@ def createAssignmentRoute():
 
 @app.route('/createAssignmentSubmit', methods=["POST"])
 def createAssignment():
+    result_files = request.files.getlist("resultFiles")
+    total = len(result_files)*10
     id = mongo.db.Assignment.insert_one({
         'name' : request.form['name'],
         'dueDate' : request.form['dueDate'],
         'language' : request.form['language'],
         'runCommand' : request.form['runCommand'],
-        'type' : request.form['runType']
+        'type' : request.form['runType'],
+        'total' : total
     }).inserted_id
     mongo.db.Class.update({
         '_id' : ObjectId(request.form['class'])
     },{
         '$push' : { 'assignments' : id }
     })
+    
+    renameFiles(id, result_files,"results\\")
+    test_files = request.files.getlist("testFiles")
+    renameFiles(id, test_files, "tests\\")
+    desc_file = request.files.getlist("descFile")
+    renameFiles(id, desc_file, "desc\\")
     return redirect(url_for('dashboard'), code=307)
+
+def renameFiles(id, files, ty):
+    for f in files:
+        filename = secure_filename(f.filename)
+        path = os.path.dirname(__file__)
+        path = path[0:len(path) - 7] + "\\assignmentFiles\\" + str(id) + "\\"
+
+        try:
+            os.makedirs(path)
+        except:
+            pass
+        
+        path = path + ty
+        try:
+            os.makedirs(path)
+        except:
+            pass
+       
+        f.save(os.path.join(path, filename))
+    return
 
 @app.route('/addAClass', methods=["POST"])
 def addAClass():
