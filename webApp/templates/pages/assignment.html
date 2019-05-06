@@ -39,10 +39,8 @@
 
           
             <form id="fileUpload" action="upload" method=post enctype=multipart/form-data>
-              {% if (status != "uploaded") %}
               <p><input type=file name=file>
                 <input type=submit value=Upload>
-              {% endif %}
                 <input type=hidden value="{{assignId}}" name="assignId">
                 <input type=hidden value="{{assignment}}" name="assignment">
                 <input type="hidden" value="{{classInfo}}" name="class">

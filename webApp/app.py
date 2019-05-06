@@ -32,7 +32,6 @@ def upload_file():
     classInfo = request.form['class']
     assignId = request.form['assignId']
     assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
-
     if 'file' not in request.files:
         return render_template('pages/assignment.html', status="noFile", assignment=assignment, classInfo=classInfo, assignId=assignId)
 
@@ -47,7 +46,9 @@ def upload_file():
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
         score, total = grader.grade(mypath, assignId)
+        print(score)
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
+        assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId)
 
 #routing for the main page
