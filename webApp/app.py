@@ -45,6 +45,7 @@ def upload_file():
         mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\" + filename
  
         score, total = grader.grade(mypath, assignId)
+        mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId)
 
 #routing for the main page
@@ -148,7 +149,8 @@ def createAssignment():
         'language' : request.form['language'],
         'runCommand' : request.form['runCommand'],
         'type' : request.form['runType'],
-        'total' : total
+        'total' : total,
+        'score' : 0,
     }).inserted_id
     mongo.db.Class.update({
         '_id' : ObjectId(request.form['class'])
