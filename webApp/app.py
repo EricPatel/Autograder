@@ -43,7 +43,7 @@ def upload_file():
         mypath = os.path.dirname(__file__)
         mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\"
         student_file.save(os.path.join(mypath, filename))
- 
+        mypath = mypath + filename
         score, total = grader.grade(mypath, assignId)
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId)
