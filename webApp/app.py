@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 import os
 import sys
 import random
+from datetime import datetime
+
 sys.path.append('../')
 from pythonSupport import grader
 
@@ -104,7 +106,13 @@ def dashboard():
 def assignment():
     classInfo = request.form['class']
     assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(request.form['assignment'])})
-    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment, assignId=request.form['assignment'])
+    pastDue = checkOpen(assignment['dueDate'].split('/'))
+    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment, assignId=request.form['assignment'], open=pastDue)
+
+def checkOpen(dueDate):
+    due = datetime(2018, int(dueDate[0]), int(dueDate[1]))
+    date = datetime.today()
+    return(due > date)
 
 @app.route('/class', methods=["POST"])
 def classPage():
@@ -157,7 +165,7 @@ def createAssignment():
     },{
         '$push' : { 'assignments' : id }
     })
-    
+
     renameFiles(id, result_files,"results\\")
     test_files = request.files.getlist("testFiles")
     renameFiles(id, test_files, "tests\\")
@@ -175,13 +183,13 @@ def renameFiles(id, files, ty):
             os.makedirs(path)
         except:
             pass
-        
+
         path = path + ty
         try:
             os.makedirs(path)
         except:
             pass
-       
+
         f.save(os.path.join(path, filename))
     return
 
