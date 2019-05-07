@@ -36,6 +36,11 @@
           {% else %}
             <p class="projectDesc" style="display: inline">Not Started</p>
           {% endif %}
+        <p class="projectDesc">Description</p>
+        <form action="download" method="post" style="display: inline">
+            <input type=submit value=Download>
+            <input type=hidden value="{{descPath}}" name="descPath">
+        </form>
 
           
             <form id="fileUpload" action="upload" method=post enctype=multipart/form-data>

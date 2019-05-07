@@ -1,7 +1,7 @@
 # Run with command "python app.py"
 # Will reload on save
 
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, send_file
 from flask_pymongo import PyMongo
 from bson import ObjectId
 from werkzeug.utils import secure_filename
@@ -26,6 +26,10 @@ mongo = PyMongo(app)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/download', methods=['POST'])
+def downloadDescription():
+    return send_file(request.form['descPath'], as_attachment=True)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -134,7 +138,15 @@ def assignment():
     if submission == None:
         submission = createSubmission(userId, assignId, 0)
     pastDue = checkOpen(assignment['dueDate'].split('/'))
-    return render_template('pages/assignment.html', submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId, open=pastDue)
+    descPath = getDescriptionFile(assignId)
+    return render_template('pages/assignment.html', descPath=descPath, submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId, open=pastDue)
+
+def getDescriptionFile(assignId):
+    path = os.path.dirname(__file__)
+    path = path[0:len(path) - 7] + "\\assignmentFiles\\" + assignId + "\\desc\\"
+    path += os.listdir(path)[0]
+    #path = "'" + path + "'"
+    return path
 
 def checkOpen(dueDate):
     due = datetime(2018, int(dueDate[0]), int(dueDate[1]))
