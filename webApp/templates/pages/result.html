@@ -30,18 +30,12 @@
         <th>Student's Name</th>
         <th class="centerH">Score</th>
       </tr>
+      {% for name in grades.keys() -%}
       <tr>
-        <td>Eric Patel</td>
-        <td class="score">90</td>
+        <td>{{name}}</td>
+        <td class="score">{{grades[name]}}</td>
       </tr>
-      <tr>
-        <td>Jade Aulet</td>
-        <td class="score">80</td>
-      </tr>
-      <tr>
-        <td>Shrey Bohra</td>
-        <td class="score">100</td>
-      </tr>
+      {%- endfor %}
     </table>
   </div>
 {% endblock %}

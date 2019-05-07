@@ -130,7 +130,9 @@ def assignment():
     assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(request.form['assignment'])})
     userId = session['user']
     assignId = request.form['assignment']
-    submission = createSubmission(userId, assignId, 0)
+    submission = mongo.db.Submission.find_one({'user' : ObjectId(userId), 'assignment' : ObjectId(assignId)})
+    if submission == None:
+        submission = createSubmission(userId, assignId, 0)
     pastDue = checkOpen(assignment['dueDate'].split('/'))
     return render_template('pages/assignment.html', submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId, open=pastDue)
 
@@ -239,7 +241,16 @@ def enroll():
 @app.route('/result', methods=["POST"])
 def result():
     classInfo = request.form['class']
-    return render_template('pages/result.html', classInfo=classInfo)
+    assignment = request.form['assignment']
+    submissions = mongo.db.Submission.find({'assignment' : ObjectId(assignment)})
+    grades = {}
+    for sub in submissions:
+        user = sub['user']
+        user = mongo.db.User.find_one({
+            '_id' : user
+        })
+        grades[user['name']] = sub['score']
+    return render_template('pages/result.html', classInfo=classInfo, grades=grades)
 
 @app.route('/signout', methods=["POST"])
 def signOut():
