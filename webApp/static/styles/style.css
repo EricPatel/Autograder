@@ -633,14 +633,11 @@ input:focus{
 .assign{
   font-size: 24px;
   width: 230px;
-  margin-left: 100px;
+  margin-left: 135px;
   text-align: left;
-  padding-left: 0px;
   margin-top: -5px;
   font-family: inherit;
   height: 48px;
-  position: relative;
-  left: 9%;
   background: #a30e22;
   color: white;
   padding-left: 10px;
@@ -658,7 +655,7 @@ input:focus{
   padding-top: 8px;
   padding-right: 5px;
   color: #A30E22;
-  width: 150px;
+  width: 140px;
 }
 
 .fileDescS{
@@ -669,7 +666,7 @@ input:focus{
   padding-top: 8px;
   padding-right: 5px;
   color: #A30E22;
-  width: 144px;
+  width: 134px;
 }
 
 .fileInput1{
