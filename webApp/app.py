@@ -54,7 +54,8 @@ def upload_file():
         assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
         userId = session['user']
         submission = createSubmission(userId, assignId, score)
-        return render_template('pages/assignment.html', status="uploaded", assignment=assignment, classInfo=classInfo, assignId=assignId, submission=submission)
+        pastDue = checkOpen(assignment['dueDate'].split('/'))
+        return render_template('pages/assignment.html', status="uploaded", assignment=assignment, classInfo=classInfo, assignId=assignId, submission=submission, open=pastDue)
 
 def createSubmission(userId, assignId, score):
     mongo.db.Submission.update(
@@ -149,7 +150,7 @@ def getDescriptionFile(assignId):
     return path
 
 def checkOpen(dueDate):
-    due = datetime(2018, int(dueDate[0]), int(dueDate[1]))
+    due = datetime(int(dueDate[2]), int(dueDate[0]), int(dueDate[1]))
     date = datetime.today()
     return(due > date)
 

@@ -35,14 +35,14 @@
             <input type=hidden value="{{descPath}}" name="descPath">
         </form>
 
-
+          {% if open %}
             <form id="fileUpload" action="upload" method=post enctype=multipart/form-data>
               <p class="projectDesc"><input type=file name=file></p><p class="projectDesc"><input type=submit value=Upload></p>
                 <input type=hidden value="{{assignId}}" name="assignId">
                 <input type=hidden value="{{assignment}}" name="assignment">
                 <input type="hidden" value="{{classInfo}}" name="class">
             </form>
-
+          {% endif %}
 
           {% if status is eq 'noFile' %}
             <p class="error">Please select a file to upload</p>
