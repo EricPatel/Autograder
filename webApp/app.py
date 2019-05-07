@@ -45,12 +45,12 @@ def upload_file():
         mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\"
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
-        score, total = grader.grade(mypath, assignId)
+        score = grader.grade(mypath, assignId, assignment['type'])
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
         userId = session['user']
         submission = createSubmission(userId, assignId, score)
-        return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId, submission=submission)
+        return render_template('pages/assignment.html', status="uploaded", assignment=assignment, classInfo=classInfo, assignId=assignId, submission=submission)
 
 def createSubmission(userId, assignId, score):
     mongo.db.Submission.update(
@@ -185,7 +185,6 @@ def createAssignment():
         'runCommand' : request.form['runCommand'],
         'type' : request.form['runType'],
         'total' : total,
-        'score' : 0,
     }).inserted_id
     mongo.db.Class.update({
         '_id' : ObjectId(request.form['class'])
