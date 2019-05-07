@@ -46,7 +46,7 @@ def upload_file():
     if student_file and allowed_file(student_file.filename):
         filename = secure_filename(student_file.filename)
         mypath = os.path.dirname(__file__)
-        mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\"
+        mypath = mypath[0:len(mypath) - 7] + "/studentSubmissions/"
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
         score = grader.grade(mypath, assignId, assignment['type'])
@@ -61,7 +61,7 @@ def createSubmission(userId, assignId, score):
         {
             'user' : ObjectId(userId),
             'assignment' : ObjectId(assignId),
-        }, 
+        },
         {
             'user' : ObjectId(userId),
             'assignment' : ObjectId(assignId),
@@ -143,7 +143,7 @@ def assignment():
 
 def getDescriptionFile(assignId):
     path = os.path.dirname(__file__)
-    path = path[0:len(path) - 7] + "\\assignmentFiles\\" + assignId + "\\desc\\"
+    path = path[0:len(path) - 7] + "/assignmentFiles/" + assignId + "/desc/"
     path += os.listdir(path)[0]
     #path = "'" + path + "'"
     return path
@@ -204,18 +204,18 @@ def createAssignment():
         '$push' : { 'assignments' : id }
     })
 
-    renameFiles(id, result_files,"results\\")
+    renameFiles(id, result_files,"results/")
     test_files = request.files.getlist("testFiles")
-    renameFiles(id, test_files, "tests\\")
+    renameFiles(id, test_files, "tests/")
     desc_file = request.files.getlist("descFile")
-    renameFiles(id, desc_file, "desc\\")
+    renameFiles(id, desc_file, "desc/")
     return redirect(url_for('dashboard'), code=307)
 
 def renameFiles(id, files, ty):
     for f in files:
         filename = secure_filename(f.filename)
         path = os.path.dirname(__file__)
-        path = path[0:len(path) - 7] + "\\assignmentFiles\\" + str(id) + "\\"
+        path = path[0:len(path) - 7] + "/assignmentFiles/" + str(id) + "/"
 
         try:
             os.makedirs(path)

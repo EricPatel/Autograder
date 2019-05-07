@@ -149,7 +149,7 @@ div{
   justify-content: center;
   flex-direction: column;
   width: 60%;
-  padding-left: 40%;
+  padding-left: 25%;
 }
 
 .navLink{
@@ -573,7 +573,7 @@ p{
   background-color: #fff;
   margin: auto;
   width: 500px;
-  height: 375px;
+  height: 350px;
   margin-top: calc(50vh - 198px);
   border-radius: 7px;
 }
@@ -581,6 +581,10 @@ p{
 .input{
   width: 10px;
   height: 5px;
+}
+
+input:focus{
+  outline: none;
 }
 
 .error{
@@ -654,6 +658,18 @@ p{
   padding-top: 8px;
   padding-right: 5px;
   color: #A30E22;
+  width: 150px;
+}
+
+.fileDescS{
+  display: inline-block;
+  padding-left: 100px;
+  margin-left: 0px;
+  font-size: 24px;
+  padding-top: 8px;
+  padding-right: 5px;
+  color: #A30E22;
+  width: 144px;
 }
 
 .fileInput1{
