@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 import os
 import sys
 import random
+from datetime import datetime
+
 sys.path.append('../')
 from pythonSupport import grader
 
@@ -129,7 +131,13 @@ def assignment():
     userId = session['user']
     assignId = request.form['assignment']
     submission = createSubmission(userId, assignId, 0)
-    return render_template('pages/assignment.html', submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId)
+    pastDue = checkOpen(assignment['dueDate'].split('/'))
+    return render_template('pages/assignment.html', submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId, open=pastDue)
+
+def checkOpen(dueDate):
+    due = datetime(2018, int(dueDate[0]), int(dueDate[1]))
+    date = datetime.today()
+    return(due > date)
 
 @app.route('/class', methods=["POST"])
 def classPage():
@@ -182,7 +190,7 @@ def createAssignment():
     },{
         '$push' : { 'assignments' : id }
     })
-    
+
     renameFiles(id, result_files,"results\\")
     test_files = request.files.getlist("testFiles")
     renameFiles(id, test_files, "tests\\")
@@ -200,13 +208,13 @@ def renameFiles(id, files, ty):
             os.makedirs(path)
         except:
             pass
-        
+
         path = path + ty
         try:
             os.makedirs(path)
         except:
             pass
-       
+
         f.save(os.path.join(path, filename))
     return
 
