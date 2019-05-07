@@ -643,13 +643,16 @@ input:focus{
   padding-left: 10px;
 }
 
+.assign:hover {
+  cursor: pointer;
+}
+
 .assign:focus{
   outline: none;
 }
 
 .fileDesc{
-  display: inline-block;
-  padding-left: 100px;
+  padding-left: 97px;
   margin-left: 0px;
   font-size: 24px;
   padding-top: 8px;
@@ -659,10 +662,9 @@ input:focus{
 }
 
 .fileDescS{
-  display: inline-block;
-  padding-left: 100px;
+  padding-left: 110px;
   margin-left: 0px;
-  font-size: 24px;
+  font-size: 22px;
   padding-top: 8px;
   padding-right: 5px;
   color: #A30E22;
@@ -673,7 +675,6 @@ input:focus{
   color: #a30e22;
   position: relative;
   bottom: 4px;
-  left: 4px;
   font-family: inherit;
 }
 
