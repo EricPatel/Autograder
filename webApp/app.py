@@ -44,10 +44,31 @@ def upload_file():
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
         score, total = grader.grade(mypath, assignId)
-        print(score)
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
-        return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId)
+        userId = session['user']
+        submission = createSubmission(userId, assignId, score)
+        return render_template('pages/assignment.html', status="uploaded", score=score, total=total, assignment=assignment, classInfo=classInfo, assignId=assignId, submission=submission)
+
+def createSubmission(userId, assignId, score):
+    mongo.db.Submission.update(
+        {
+            'user' : ObjectId(userId),
+            'assignment' : ObjectId(assignId),
+        }, 
+        {
+            'user' : ObjectId(userId),
+            'assignment' : ObjectId(assignId),
+            'score' : score
+        }, upsert=True)
+
+    id = mongo.db.Submission.find_one({
+        'user' : ObjectId(userId),
+        'assignment' : ObjectId(assignId),
+        'score' : score
+    })
+
+    return id
 
 #routing for the main page
 @app.route('/')
@@ -105,7 +126,10 @@ def dashboard():
 def assignment():
     classInfo = request.form['class']
     assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(request.form['assignment'])})
-    return render_template('pages/assignment.html', classInfo=classInfo, assignment=assignment, assignId=request.form['assignment'])
+    userId = session['user']
+    assignId = request.form['assignment']
+    submission = createSubmission(userId, assignId, 0)
+    return render_template('pages/assignment.html', submission=submission, classInfo=classInfo, assignment=assignment, assignId=assignId)
 
 @app.route('/class', methods=["POST"])
 def classPage():

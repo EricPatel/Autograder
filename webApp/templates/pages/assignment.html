@@ -29,7 +29,7 @@
       <div class="description"></div>
       <div class="padDesc">
         <p class="projectDesc">Due Date:</p><p class="projectDesc">{{assignment.dueDate}}</p>
-        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{assignment.score}} (max {{assignment.total}})</p>
+        <p class="projectDesc">Grade Scale	Points</p><p class="projectDesc">{{submission.score}} (max {{assignment.total}})</p>
         <p class="projectDesc">Status</p>
           {% if status is eq 'uploaded' %}
             <p class="projectDesc" style="display: inline">Submitted!</p>
