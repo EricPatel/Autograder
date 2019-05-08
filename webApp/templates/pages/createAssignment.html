@@ -25,13 +25,13 @@
     <form class="assignmentCreate" enctype="multipart/form-data" action="\createAssignmentSubmit" method="post">
         <input type="hidden" value="{{id}}" name="class"></input>
         <input class="assignInput" type="text" name="name" placeholder="Assignment Name"></input>
-        <input class="assignInput" type="text" name="dueDate" placeholder="Due Date"></input>
+        <input class="assignInput" type="text" name="dueDate" placeholder="Due Date (MM/DD/YYYY)"></input>
         <select class="dropdown" name="language">
-          <option value="CL">C</option>
-          <option value="UI">Haskell</option>
-          <option value="UI">Java</option>
-          <option value="UI">Python</option>
-          <option value="UI">Racket</option>
+          <option value="C">C</option>
+          <option value="Haskell">Haskell</option>
+          <option value="Java">Java</option>
+          <option value="Python">Python</option>
+          <option value="Racket">Racket</option>
         </select>
         <select class="dropdown" name="runType">
          <option value="CL">Command Line</option>

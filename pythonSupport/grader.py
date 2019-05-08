@@ -42,7 +42,7 @@ def gradePython(path, iden, runType):
 def gradeC(path, fileName, iden, runType):
     tests, results = gradingSetup(iden)
     score = 0
-    compile = subprocess.Popen(["gcc", path + "/" + fileName,  "-o", path + "/out"],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    compile = subprocess.Popen(["gcc", path ,  "-o", path.replace(filename, 'out')],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     compile.wait()
     stdout, stderr = compile.communicate()
     #print(stderr.decode("utf-8"))
@@ -50,9 +50,10 @@ def gradeC(path, fileName, iden, runType):
         #file = open("error.txt", "w+")
         #file.write(stderr.decode("utf-8"))
         return score
+    newPath = path.replace(filename, 'out')
     if runType == 'CL':
         for x in range(len(tests)):
-            cmdUser = os.popen("./" + "'" + path + "/out' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
+            cmdUser = os.popen("./" + "'" + newPath + "' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
             user = cmdUser.read()
             cmdUser.close()
             cmdResult = os.popen("cat ../assignmentFiles/" + iden + "/results/" + results[x])
@@ -62,7 +63,7 @@ def gradeC(path, fileName, iden, runType):
                 score += 10
     else:
         for x in range(len(tests)):
-            cmdUser = os.popen("cat ../assignmentFiles/" + iden + "/tests/" + tests[x] + " | ./" + "'" + path + "/out'")
+            cmdUser = os.popen("cat ../assignmentFiles/" + iden + "/tests/" + tests[x] + " | ./" + "'" + newPath + "'")
             user = cmdUser.read()
             cmdUser.close()
             #cat test | python3 assigment.py
@@ -73,10 +74,10 @@ def gradeC(path, fileName, iden, runType):
                 score += 10
     return score
 
-def gradeJava(path, fileName, iden, runType):
+def gradeJava(path, iden, runType):
     tests, results = gradingSetup(iden)
     score = 0
-    compile = subprocess.Popen(["javac", path + "/" + fileName],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    compile = subprocess.Popen(["javac", path],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     compile.wait()
     stdout, stderr = compile.communicate()
     #print(stderr.decode("utf-8"))
@@ -84,10 +85,10 @@ def gradeJava(path, fileName, iden, runType):
         #file = open("error.txt", "w+")
         #file.write(stderr.decode("utf-8"))
         return score
-    compiledFile = fileName.replace('java', 'class')
+    newPath = path.replace('java', 'class')
     if runType == 'CL':
         for x in range(len(tests)):
-            cmdUser = os.popen("java " + "'" + path + "/" + compiledFile + "' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
+            cmdUser = os.popen("java " + "'" + newPath + "' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
             user = cmdUser.read()
             cmdUser.close()
             cmdResult = os.popen("cat ../assignmentFiles/" + iden + "/results/" + results[x])
@@ -97,7 +98,7 @@ def gradeJava(path, fileName, iden, runType):
                 score += 10
     else:
         for x in range(len(tests)):
-            cmdUser = os.popen("cat ../assignmentFiles/" + iden + "/tests/" + tests[x] + " | java " + "'" + path + "/" + compiledFile + "'")
+            cmdUser = os.popen("cat ../assignmentFiles/" + iden + "/tests/" + tests[x] + " | java " + "'" + newPath + "'")
             user = cmdUser.read()
             cmdUser.close()
             #cat test | python3 assigment.py
