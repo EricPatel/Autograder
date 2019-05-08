@@ -51,7 +51,7 @@ def upload_file():
             os.makedirs(mypath)
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
-        score = grader.grade(mypath, assignId, assignment['type'])
+        score = grader.gradePython(mypath, assignId, assignment['type'])
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
         userId = session['user']
@@ -216,10 +216,10 @@ def renameFiles(id, files, ty):
     for f in files:
         filename = secure_filename(f.filename)
         path = os.path.dirname(__file__)
-        path = path[0:len(path) - 7] + "\\assignmentFiles\\" 
+        path = path[0:len(path) - 7] + "\\assignmentFiles\\"
         if not os.path.isdir(path):
             os.makedirs(path)
-            
+
         path = path + str(id) + "\\"
 
         try:
