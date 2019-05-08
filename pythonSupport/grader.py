@@ -34,8 +34,6 @@ def gradePython(path, iden, runType):
             cmdUser = os.popen("cat ../assignmentFiles/" + iden + "/tests/" + tests[x] + " | python " + "'" + path + "'")
             user = cmdUser.read()
             cmdUser.close()
-            print("************")
-            print(path)
             #cat test | python3 assigment.py
             cmdResult = os.popen("cat ../assignmentFiles/" + iden + "/results/" + results[x])
             result = cmdResult.read()
@@ -56,9 +54,6 @@ def gradeC(path, fileName, iden, runType):
         #file.write(stderr.decode("utf-8"))
         return score
     newPath = path.replace(fileName, './out')
-    print("************")
-    print(newPath)
-
     if runType == 'CL':
         for x in range(len(tests)):
             cmdUser = os.popen("'" + newPath + "' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
