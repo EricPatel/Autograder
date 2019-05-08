@@ -21,13 +21,13 @@
     <div class="spacer"></div>
     <h1 class="class">Classes</h1>
     <hr class="white"></hr>
-    {% for class in classes -%}
+    {% for class in classes %}
     <form id="{{class._id}}" method="post" action="\class">
       <input type="hidden" name="class" value="{{class._id}}"></input>
     </form>
     <div class="assignment center" onclick="document.getElementById('{{class._id}}').submit();">
       <h1 class="red p">{{class.name}}</h1>
     </div>
-    {%- endfor %}
+    {% endfor %}
   </div>
 {% endblock %}
