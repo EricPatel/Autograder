@@ -51,7 +51,12 @@ def upload_file():
             os.makedirs(mypath)
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
-        score = grader.gradePython(mypath, assignId, assignment['type'])
+        if assignment['language'] == 'c':
+            score = grader.gradeC(mypath, filename, assignId, assignment['type'])
+        elif assignment['language'] == 'java':
+            score = grader.gradeJava(mypath, assignId, assignment['type'])
+        else:
+            score = grader.gradePython(mypath, assignId, assignment['type'])
         mongo.db.Assignment.update({'_id' : ObjectId(assignId)}, {'$set': {'score': score}})
         assignment = mongo.db.Assignment.find_one({'_id' : ObjectId(assignId)})
         userId = session['user']

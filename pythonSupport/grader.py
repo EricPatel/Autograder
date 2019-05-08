@@ -45,7 +45,7 @@ def gradePython(path, iden, runType):
 def gradeC(path, fileName, iden, runType):
     tests, results = gradingSetup(iden)
     score = 0
-    compile = subprocess.Popen(["gcc", path ,  "-o", path.replace(filename, 'out')],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    compile = subprocess.Popen(["gcc", path ,  "-o", path.replace(fileName, 'out')],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     compile.wait()
     stdout, stderr = compile.communicate()
     #print(stderr.decode("utf-8"))
@@ -53,7 +53,7 @@ def gradeC(path, fileName, iden, runType):
         #file = open("error.txt", "w+")
         #file.write(stderr.decode("utf-8"))
         return score
-    newPath = path.replace(filename, 'out')
+    newPath = path.replace(fileName, 'out')
     if runType == 'CL':
         for x in range(len(tests)):
             cmdUser = os.popen("./" + "'" + newPath + "' " + "../assignmentFiles/" + iden + "/tests/" + tests[x])
