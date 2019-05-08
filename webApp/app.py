@@ -46,14 +46,15 @@ def upload_file():
     if student_file and allowed_file(student_file.filename):
         filename = secure_filename(student_file.filename)
         mypath = os.path.dirname(__file__)
-        mypath = mypath[0:len(mypath) - 7] + "\\studentSubmissions\\"
+        mypath = mypath[0:len(mypath) - 7] + "/studentSubmissions/"
         if not os.path.isdir(mypath):
             os.makedirs(mypath)
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
-        if assignment['language'] == 'c':
+        if assignment['language'] == 'C':
+            print("************")
             score = grader.gradeC(mypath, filename, assignId, assignment['type'])
-        elif assignment['language'] == 'java':
+        elif assignment['language'] == 'Java':
             score = grader.gradeJava(mypath, assignId, assignment['type'])
         else:
             score = grader.gradePython(mypath, assignId, assignment['type'])
@@ -151,7 +152,7 @@ def assignment():
 
 def getDescriptionFile(assignId):
     path = os.path.dirname(__file__)
-    path = path[0:len(path) - 7] + "\\assignmentFiles\\" + assignId + "\\desc\\"
+    path = path[0:len(path) - 7] + "/assignmentFiles/" + assignId + "/desc/"
     path += os.listdir(path)[0]
     return path
 
@@ -210,22 +211,22 @@ def createAssignment():
         '$push' : { 'assignments' : id }
     })
 
-    renameFiles(id, result_files,"results\\")
+    renameFiles(id, result_files,"results/")
     test_files = request.files.getlist("testFiles")
-    renameFiles(id, test_files, "tests\\")
+    renameFiles(id, test_files, "tests/")
     desc_file = request.files.getlist("descFile")
-    renameFiles(id, desc_file, "desc\\")
+    renameFiles(id, desc_file, "desc/")
     return redirect(url_for('dashboard'))
 
 def renameFiles(id, files, ty):
     for f in files:
         filename = secure_filename(f.filename)
         path = os.path.dirname(__file__)
-        path = path[0:len(path) - 7] + "\\assignmentFiles\\"
+        path = path[0:len(path) - 7] + "/assignmentFiles/"
         if not os.path.isdir(path):
             os.makedirs(path)
 
-        path = path + str(id) + "\\"
+        path = path + str(id) + "/"
 
         try:
             os.makedirs(path)
