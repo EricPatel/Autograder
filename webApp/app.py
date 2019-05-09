@@ -9,19 +9,14 @@ import os
 import sys
 import random
 from datetime import datetime
+import grader
 
-sys.path.append('../')
-from pythonSupport import grader
-
-
-UPLOAD_FOLDER = r"C:\Users\shrey\Documents\Prin Prog\Final Project\AutograderApp\studentSubmissions"
 ALLOWED_EXTENSIONS = set(['txt', 'py', 'c', 'java', 'hs'])
-
 
 app = Flask(__name__)
 app.secret_key = "secret key"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/AutoGrader"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 mongo = PyMongo(app)
 
 def allowed_file(filename):
@@ -52,7 +47,6 @@ def upload_file():
         student_file.save(os.path.join(mypath, filename))
         mypath = mypath + filename
         if assignment['language'] == 'C':
-            print("************")
             score = grader.gradeC(mypath, filename, assignId, assignment['type'])
         elif assignment['language'] == 'Java':
             score = grader.gradeJava(mypath, assignId, assignment['type'])
