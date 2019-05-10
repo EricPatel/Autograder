@@ -15,6 +15,7 @@ To run this application locally, in the webApp directory run __`python app.py`__
       - Naming Convention for Results: result1.txt, result2.txt, result3.txt ... 
     - Every test file is worth 10 points 
     - The output of test1.txt and the result1.txt will be compared and the output of test2.txt and the result2.txt will be compared and so on ..
+    - Our code doesn't classify floating points the same as integers so 4.0 != 4
 6. Copy the Class Code in the bottom left of screen with all the assignments for your class
 7. Create student accounts
 8. Log in with one of them
@@ -24,3 +25,6 @@ To run this application locally, in the webApp directory run __`python app.py`__
 12. Once it is uploaded, the grade will show up
 13. Upload the files for all the assignments from the users you created 
 14. Then login as a Professor, click on the class you created, and click on each of the assignments to see the grades for each student
+
+# Random Bug #
+When you create an assignment as a professor and click the create assignment button, it will route you to the dashboard link. Sometimes this URL is unavailable and you will have to go back to the main page. The assignment is still created, but there is a bug in the routing functionality. 
