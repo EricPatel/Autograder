@@ -14,6 +14,7 @@ To run this application locally, in the webApp directory run __`python app.py`__
       - Naming Convention for Tests: test1.txt, test2.txt, test3.txt ...
       - Naming Convention for Results: result1.txt, result2.txt, result3.txt ... 
     - Every test file is worth 10 points 
+    - Choose Command Line or User Input which specifies if the student's code should take the test file as a command line argument or user input using the cat command
     - The output of test1.txt and the result1.txt will be compared and the output of test2.txt and the result2.txt will be compared and so on ..
     - Our code doesn't classify floating points the same as integers so 4.0 != 4
 6. Copy the Class Code in the bottom left of screen with all the assignments for your class
